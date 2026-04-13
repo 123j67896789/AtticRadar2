@@ -16,6 +16,7 @@ function load() {
 
     // initialize the alerts
     require('../../alerts/menu_item');
+    require('../../alerts/admin_warning')();
     // load alertd on entry
     $('#alertMenuItemIcon').click();
 
