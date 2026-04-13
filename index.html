@@ -124,6 +124,33 @@
             font-size: 15px;
             font-style: italic;
         }
+        #adminWeatherWarningBanner {
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 500100;
+            width: min(760px, 92vw);
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            background: rgba(30, 30, 30, 0.92);
+            color: rgb(255, 255, 255);
+            box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        #adminWeatherWarningBannerText {
+            font-size: 14px;
+            line-height: 1.2em;
+        }
+        #adminWeatherWarningBannerClose {
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -137,6 +164,10 @@
     </div>
 
     <div id="bodyDiv">
+    <div id="adminWeatherWarningBanner">
+        <div id="adminWeatherWarningBannerText"></div>
+        <button id="adminWeatherWarningBannerClose" class="btn btn-sm btn-outline-light">Dismiss</button>
+    </div>
 
     <div id="progress_bar_screen_background">
         <div id="mainProgressBar" class="progress_bar" style="bottom: calc(50% - 15px); box-shadow: 0px 0px 20px 8px rgb(25, 25, 25);">
@@ -462,6 +493,28 @@
                         Discussions
                         <div class="form-check form-switch">
                             <input class="alert_options_btn form-check-input toggleSwitchContainter tscWide" onfocus="this.blur();" type="checkbox" role="switch" id="armrDiscussionsBtnSwitchElem" checked>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="armrHeader armrHeaderWide">ADMIN WEATHER WARNING</div>
+                    <div>
+                        <div style="font-size: 12px; opacity: 0.8; margin-bottom: 6px;">Enter admin code to issue a custom warning banner.</div>
+                        <input id="adminWarningPasscode" class="form-control form-control-sm" type="password" placeholder="Admin passcode" style="margin-bottom: 6px;">
+                        <input id="adminWarningTitle" class="form-control form-control-sm" type="text" placeholder="Warning title (example: Severe Weather Warning)" style="margin-bottom: 6px;">
+                        <textarea id="adminWarningMessage" class="form-control form-control-sm" rows="3" placeholder="Warning message" style="margin-bottom: 6px;"></textarea>
+                        <div style="display: flex; gap: 6px; margin-bottom: 6px;">
+                            <select id="adminWarningSeverity" class="form-select form-select-sm">
+                                <option value="Advisory">Advisory</option>
+                                <option value="Watch">Watch</option>
+                                <option value="Warning" selected>Warning</option>
+                                <option value="Emergency">Emergency</option>
+                            </select>
+                            <input id="adminWarningExpiresHours" class="form-control form-control-sm" type="number" min="1" max="168" value="6" title="Expiration in hours">
+                        </div>
+                        <div style="display: flex; gap: 6px;">
+                            <button id="adminWarningIssueBtn" class="btn btn-sm btn-warning" type="button">Issue Warning</button>
+                            <button id="adminWarningClearBtn" class="btn btn-sm btn-outline-secondary" type="button">Clear Warning</button>
                         </div>
                     </div>
 
