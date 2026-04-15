@@ -220,6 +220,9 @@ function init_admin_warning_system() {
     $('#adminMenuItemDiv').on('click', function () {
         _set_admin_sidebar_open(!$('#adminSidebar').hasClass('open'));
     });
+    $('#adminLeftBarToggle').on('click', function () {
+        _set_admin_sidebar_open(!$('#adminSidebar').hasClass('open'));
+    });
     $('#adminSidebarClose').on('click', function () {
         _set_admin_sidebar_open(false);
     });
