@@ -31,7 +31,7 @@ function filter_alerts(alerts_data) {
         const has_geometry = feature.geometry != null;
 
         if (show_warnings) {
-            if (warnings_whitelist.includes(current_alert_name)) {
+            if (typeof current_alert_name === 'string' && current_alert_name.toLowerCase().includes('warning')) {
                 return true;
             }
         }
