@@ -203,19 +203,6 @@ function _handle_clear_warning() {
         });
 }
 
-function _open_admin_warning_menu() {
-    armFunctions.showARMwindow();
-    $('#atticRadarMenuMainScreen').hide();
-    $('#atticRadarMenuSPCScreen').hide();
-    $('#atticRadarMenuSettingsScreen').show();
-    setTimeout(() => {
-        const section = $('#adminWarningSection');
-        if (section.length) {
-            $('#atticRadarMenuSettingsScreen').animate({ scrollTop: Math.max(section.position().top - 10, 0) }, 300);
-        }
-    }, 300);
-}
-
 function init_admin_warning_system() {
     _fetch_warning_from_server().then((serverWarning) => {
         if (serverWarning) {
@@ -230,7 +217,19 @@ function init_admin_warning_system() {
     $('#adminWarningIssueBtn').on('click', _handle_issue_warning);
     $('#adminWarningClearBtn').on('click', _handle_clear_warning);
     $('#adminWeatherWarningBannerClose').on('click', _hide_banner);
-    $('#adminMenuItemDiv').on('click', _open_admin_warning_menu);
+    $('#adminMenuItemDiv').on('click', function () {
+        _set_admin_sidebar_open(!$('#adminSidebar').hasClass('open'));
+    });
+    $('#adminSidebarClose').on('click', function () {
+        _set_admin_sidebar_open(false);
+    });
+    $('#adminSidebarOverlay').on('click', function () {
+        _set_admin_sidebar_open(false);
+    });
+    $('#adminPolygonDrawBtn').on('click', _start_admin_polygon_draw);
+    $('#adminPolygonFinishBtn').on('click', _finish_admin_polygon_draw);
+    $('#adminPolygonClearBtn').on('click', _clear_admin_polygons);
+    _set_polygon_status();
 }
 
 module.exports = init_admin_warning_system;
