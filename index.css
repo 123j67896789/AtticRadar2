@@ -408,8 +408,7 @@ https://tobiasahlin.com/spinkit/
 
 .adminSidebarSection .form-control,
 .adminSidebarSection .form-select,
-.adminSidebarSection textarea,
-.adminSidebarSection button {
+.adminSidebarSection textarea {
     width: 100%;
 }
 
