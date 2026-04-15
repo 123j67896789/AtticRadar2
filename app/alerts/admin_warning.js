@@ -1,4 +1,5 @@
 const armFunctions = require('../core/menu/atticRadarMenu');
+const draw_functions = require('../draw/draw_functions');
 
 const STORAGE_KEY = 'attic_admin_weather_warning';
 const DEFAULT_PASSCODE = '1172';
@@ -75,6 +76,37 @@ function _is_expired(warning_data) {
 
 function _hide_banner() {
     $('#adminWeatherWarningBanner').hide();
+}
+
+function _set_admin_sidebar_open(is_open) {
+    if (is_open) {
+        $('#adminSidebar').addClass('open');
+        $('#adminSidebarOverlay').show();
+        $('#adminMenuItemIcon').addClass('menu_item_selected').removeClass('menu_item_not_selected');
+    } else {
+        $('#adminSidebar').removeClass('open');
+        $('#adminSidebarOverlay').hide();
+        $('#adminMenuItemIcon').removeClass('menu_item_selected').addClass('menu_item_not_selected');
+    }
+}
+
+function _set_polygon_status(message) {
+    $('#adminPolygonStatus').text(message || 'Click the map to place points, then double-click to finish the polygon.');
+}
+
+function _start_admin_polygon_draw() {
+    draw_functions.enable_drawing('polygon');
+    _set_polygon_status('Polygon mode active. Click the map to add points; double-click to close the polygon.');
+}
+
+function _finish_admin_polygon_draw() {
+    draw_functions.finish_polygon();
+    _set_polygon_status('Polygon completed. Click "Start Polygon" to draw another shape.');
+}
+
+function _clear_admin_polygons() {
+    draw_functions.clear_drawing();
+    _set_polygon_status('Polygon canvas cleared.');
 }
 
 function _severity_to_color(severity) {
