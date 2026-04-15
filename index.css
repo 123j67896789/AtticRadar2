@@ -366,20 +366,20 @@ https://tobiasahlin.com/spinkit/
 #adminSidebar {
     position: fixed;
     z-index: 230;
-    right: -360px;
+    left: -360px;
     top: 0;
-    width: 340px;
+    width: 320px;
     height: 100%;
     background-color: rgb(18, 18, 18);
     color: white;
-    box-shadow: -6px 0 24px rgba(0, 0, 0, 0.45);
-    transition: right 0.25s ease;
+    box-shadow: 6px 0 24px rgba(0, 0, 0, 0.45);
+    transition: left 0.25s ease;
     display: flex;
     flex-direction: column;
 }
 
 #adminSidebar.open {
-    right: 0;
+    left: 0;
 }
 
 #adminSidebarHeader {
